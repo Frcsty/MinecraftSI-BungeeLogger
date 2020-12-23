@@ -1,0 +1,8 @@
+dataSource.user: FrostyDB
+dataSource.password: debpasswd
+
+dataSource.databaseName: bungeeLogger
+dataSource.port: 3306
+dataSource.server: 85.10.194.250
+
+database.rez: "water breeding"
