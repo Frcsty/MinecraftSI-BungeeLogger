@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
-public final class GeyserChannelBlocker extends Plugin implements Listener {
+public final class LoggerPlugin extends Plugin implements Listener {
 
     @Override
     public void onEnable() {

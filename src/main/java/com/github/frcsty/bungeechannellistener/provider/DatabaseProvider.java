@@ -4,7 +4,7 @@ import co.aikar.idb.DB;
 import co.aikar.idb.Database;
 import co.aikar.idb.DatabaseOptions;
 import co.aikar.idb.PooledDatabaseOptions;
-import com.github.frcsty.bungeechannellistener.GeyserChannelBlocker;
+import com.github.frcsty.bungeechannellistener.LoggerPlugin;
 import com.github.frcsty.bungeechannellistener.util.FileUtils;
 import net.md_5.bungee.config.Configuration;
 
@@ -12,7 +12,7 @@ public final class DatabaseProvider {
 
     public static String databaseName;
 
-    public DatabaseProvider(final GeyserChannelBlocker plugin) {
+    public DatabaseProvider(final LoggerPlugin plugin) {
         final Configuration configuration = FileUtils.getConfiguration(plugin, "config.yml");
         databaseName = configuration.getString("dataSource.databaseName");
 

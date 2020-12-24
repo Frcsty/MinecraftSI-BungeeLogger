@@ -1,6 +1,6 @@
 package com.github.frcsty.bungeechannellistener.listener;
 
-import com.github.frcsty.bungeechannellistener.GeyserChannelBlocker;
+import com.github.frcsty.bungeechannellistener.LoggerPlugin;
 import com.github.frcsty.bungeechannellistener.util.DatabaseUtils;
 import com.github.frcsty.bungeechannellistener.util.FileUtils;
 import com.github.frcsty.bungeechannellistener.util.JsonUtils;
@@ -17,7 +17,7 @@ public final class BungeeListener implements Listener {
 
     private final String rez;
 
-    public BungeeListener(final GeyserChannelBlocker plugin) {
+    public BungeeListener(final LoggerPlugin plugin) {
         this.rez = FileUtils.getConfiguration(plugin, "config.yml").getString("database.rez");
     }
 
