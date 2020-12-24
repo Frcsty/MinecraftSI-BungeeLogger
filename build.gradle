@@ -28,5 +28,5 @@ processResources {
 }
 
 shadowJar {
-	archiveFileName.set("BungeeChannelListener-${project.version}.jar")
+	archiveFileName.set("BungeeLogger-${project.version}.jar")
 }
