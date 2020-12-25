@@ -1,0 +1,4 @@
+name: SpigotLogger
+version: @version@
+main: com.github.frcsty.spigotlogger.LoggerPlugin
+api-version: 1.13
