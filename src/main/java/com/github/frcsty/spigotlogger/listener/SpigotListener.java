@@ -197,7 +197,12 @@ public final class SpigotListener implements Listener {
                     packetContents.putAll(JsonUtils.getClassContents(event.getPlayer(), Player.class));
                     packetContents.putAll(JsonUtils.getClassContents(event.getSource(), Object.class));
 
-                    System.out.println(JsonUtils.serializeJson(packetContents));
+                    DatabaseUtils.saveToDatabase(
+                            event.getPlayer().getUniqueId(),
+                            event.getPacketType().name(),
+                            JsonUtils.serializeJson(packetContents),
+                            rez
+                    );
                 } catch (final Exception ignored) {
                 }
             }
@@ -215,7 +220,12 @@ public final class SpigotListener implements Listener {
                     packetContents.putAll(JsonUtils.getClassContents(event.getPlayer(), Player.class));
                     packetContents.putAll(JsonUtils.getClassContents(event.getSource(), Object.class));
 
-                    System.out.println(JsonUtils.serializeJson(packetContents));
+                    DatabaseUtils.saveToDatabase(
+                            event.getPlayer().getUniqueId(),
+                            event.getPacketType().name(),
+                            JsonUtils.serializeJson(packetContents),
+                            rez
+                    );
                 } catch (final Exception ignored) { }
             }
         };
