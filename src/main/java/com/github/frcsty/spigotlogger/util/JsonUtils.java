@@ -51,7 +51,6 @@ public final class JsonUtils {
                 if (method.getParameterCount() != 0) continue;
                 if (method.getReturnType() == Void.class) continue;
                 if (method.getReturnType() == void.class) continue;
-                //if (method.getReturnType() == Collection.class) continue;
 
                 final Object methodResult = method.invoke(object);
 

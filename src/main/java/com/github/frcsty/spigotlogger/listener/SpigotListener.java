@@ -13,9 +13,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerCommandSendEvent;
-import org.bukkit.event.player.PlayerLoginEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
+import org.bukkit.inventory.meta.BookMeta;
 
 import java.net.InetAddress;
 import java.util.*;
@@ -227,7 +226,8 @@ public final class SpigotListener implements Listener {
                             JsonUtils.serializeJson(packetContents),
                             rez
                     );
-                } catch (final Exception ignored) { }
+                } catch (final Exception ignored) {
+                }
             }
         };
     }
@@ -279,6 +279,37 @@ public final class SpigotListener implements Listener {
     public void onPlayerCommand(final PlayerCommandSendEvent event) {
         final Map<String, String> eventContents = JsonUtils.getClassContents(event.getPlayer(), Player.class);
         eventContents.putAll(JsonUtils.getClassContents(event.getCommands(), Collection.class));
+
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
+                event.getPlayer().getUniqueId(),
+                event.getEventName(),
+                JsonUtils.serializeJson(eventContents),
+                rez
+        );
+    }
+
+    @EventHandler
+    public void onPlayerChat(final AsyncPlayerChatEvent event) {
+        final Map<String, String> eventContents = JsonUtils.getClassContents(event.getPlayer(), Player.class);
+        eventContents.putAll(JsonUtils.getClassContents(event.getFormat(), String.class));
+        eventContents.putAll(JsonUtils.getClassContents(event.getRecipients(), Set.class));
+        eventContents.putAll(JsonUtils.getClassContents(event.getMessage(), String.class));
+
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
+                event.getPlayer().getUniqueId(),
+                event.getEventName(),
+                JsonUtils.serializeJson(eventContents),
+                rez
+        );
+    }
+
+    @EventHandler
+    public void onBookEdit(final PlayerEditBookEvent event) {
+        final Map<String, String> eventContents = JsonUtils.getClassContents(event.getPreviousBookMeta(), BookMeta.class);
+        eventContents.putAll(JsonUtils.getClassContents(event.getNewBookMeta(), BookMeta.class));
+        eventContents.putAll(JsonUtils.getClassContents(event.getPlayer(), Player.class));
 
         DatabaseUtils.insertIntoDatabase(
                 plugin,
