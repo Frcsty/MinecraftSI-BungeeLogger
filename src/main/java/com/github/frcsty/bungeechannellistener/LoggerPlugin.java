@@ -1,5 +1,6 @@
 package com.github.frcsty.bungeechannellistener;
 
+import co.aikar.idb.DB;
 import com.github.frcsty.bungeechannellistener.listener.BungeeListener;
 import com.github.frcsty.bungeechannellistener.provider.DatabaseProvider;
 import com.github.frcsty.bungeechannellistener.util.FileUtils;
@@ -29,6 +30,11 @@ public final class LoggerPlugin extends Plugin implements Listener {
                 this,
                 new BungeeListener(this)
         );
+    }
+
+    @Override
+    public void onDisable() {
+        DB.close();
     }
 
     private void registerListeners(final Listener... listeners) {
