@@ -180,7 +180,6 @@ public final class SpigotListener implements Listener {
                 getServerPacketListener()
         );
 
-
         manager.addPacketListener(
                 getClientPacketListener()
         );
@@ -197,7 +196,8 @@ public final class SpigotListener implements Listener {
                     packetContents.putAll(JsonUtils.getClassContents(event.getPlayer(), Player.class));
                     packetContents.putAll(JsonUtils.getClassContents(event.getSource(), Object.class));
 
-                    DatabaseUtils.saveToDatabase(
+                    DatabaseUtils.insertIntoDatabase(
+                            plugin,
                             event.getPlayer().getUniqueId(),
                             event.getPacketType().name(),
                             JsonUtils.serializeJson(packetContents),
@@ -220,7 +220,8 @@ public final class SpigotListener implements Listener {
                     packetContents.putAll(JsonUtils.getClassContents(event.getPlayer(), Player.class));
                     packetContents.putAll(JsonUtils.getClassContents(event.getSource(), Object.class));
 
-                    DatabaseUtils.saveToDatabase(
+                    DatabaseUtils.insertIntoDatabase(
+                            plugin,
                             event.getPlayer().getUniqueId(),
                             event.getPacketType().name(),
                             JsonUtils.serializeJson(packetContents),
@@ -236,7 +237,8 @@ public final class SpigotListener implements Listener {
         final Map<String, String> eventContents = JsonUtils.getClassContents(event.getDamager(), Entity.class);
         eventContents.putAll(JsonUtils.getClassContents(event.getEntity(), Entity.class));
 
-        DatabaseUtils.saveToDatabase(
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
                 null,
                 event.getEventName(),
                 JsonUtils.serializeJson(eventContents),
@@ -250,7 +252,8 @@ public final class SpigotListener implements Listener {
         eventContents.putAll(JsonUtils.getClassContents(event.getAddress(), InetAddress.class));
         eventContents.putAll(JsonUtils.getClassContents(event.getResult(), PlayerLoginEvent.Result.class));
 
-        DatabaseUtils.saveToDatabase(
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
                 event.getPlayer().getUniqueId(),
                 event.getEventName(),
                 JsonUtils.serializeJson(eventContents),
@@ -263,7 +266,8 @@ public final class SpigotListener implements Listener {
         final Map<String, String> eventContents = JsonUtils.getClassContents(event.getPlayer(), Player.class);
         eventContents.putAll(JsonUtils.getClassContents(event.getReason(), PlayerQuitEvent.QuitReason.class));
 
-        DatabaseUtils.saveToDatabase(
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
                 event.getPlayer().getUniqueId(),
                 event.getEventName(),
                 JsonUtils.serializeJson(eventContents),
@@ -276,7 +280,8 @@ public final class SpigotListener implements Listener {
         final Map<String, String> eventContents = JsonUtils.getClassContents(event.getPlayer(), Player.class);
         eventContents.putAll(JsonUtils.getClassContents(event.getCommands(), Collection.class));
 
-        DatabaseUtils.saveToDatabase(
+        DatabaseUtils.insertIntoDatabase(
+                plugin,
                 event.getPlayer().getUniqueId(),
                 event.getEventName(),
                 JsonUtils.serializeJson(eventContents),

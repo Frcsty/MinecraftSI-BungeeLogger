@@ -1,5 +1,6 @@
 package com.github.frcsty.spigotlogger;
 
+import co.aikar.idb.DB;
 import com.github.frcsty.spigotlogger.listener.SpigotListener;
 import com.github.frcsty.spigotlogger.provider.DatabaseProvider;
 import org.bukkit.event.Listener;
@@ -23,6 +24,8 @@ public final class LoggerPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         reloadConfig();
+
+        DB.close();
     }
 
     private void registerListeners(final Listener... listeners) {
